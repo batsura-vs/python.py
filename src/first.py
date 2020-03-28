@@ -7,6 +7,8 @@ class Phase(Enum):
     INPUT_FIRSTNAME = auto()
     INPUT_SURNAME = auto()
     INPUT_BORN = auto()
+    DONE = auto()
+
 
 
 @dataclass()
@@ -21,14 +23,17 @@ class PassportData:
         self.userId = self.userId
 
 
-def inputName(data):
+def inputFirstName(data):
+    if data.phase is not Phase.INPUT_FIRSTNAME:
+        return
     data.firstName = input('введи своё имя\n')
-    data.phase = Phase.INPUT_SURNAME
-
+    data.phase = Phase(data.phase.value+1)
 
 def inputSurName(data):
+    if data.phase is not Phase.INPUT_SURNAME:
+        return
     data.surName = input('введи свою фамилия\n')
-    data.phase = Phase.INPUT_BORN
+    data.phase = Phase(data.phase.value+1)
 
 
 def printData(data):
@@ -36,22 +41,26 @@ def printData(data):
 
 
 def inputBorn(data):
+    if data.phase is not Phase.INPUT_BORN:
+        return
     try:
         dateStr = input('Введите дату рождения в формате дд.мм.гггг:\n')
         data.born = datetime.strptime(dateStr, '%d.%m.%Y')
-        return False
+        data.phase = Phase(data.phase.value+1)
     except ValueError:
-        return True
+        return
+
+
+handlers = [inputFirstName, inputSurName, inputBorn]
 
 
 def handeEvent(data):
-    if data.phase is Phase.INPUT_FIRSTNAME:
-        inputName(data)
-    if data.phase is Phase.INPUT_SURNAME:
-        inputSurName(data)
-    if data.phase is Phase.INPUT_BORN:
-        return inputBorn(data)
-    return True
+    for handler in handlers:
+        handler(data)
+    if data.phase is Phase.DONE:
+        return False
+    else:
+        return True
 
 
 userData = PassportData()
