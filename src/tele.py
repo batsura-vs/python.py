@@ -86,11 +86,18 @@ while handeEvent(userData):
 printData(userData)
 """
 
+
+def error(update, context):
+    """Log Errors caused by Updates."""
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
+
+
 def main():
     updater = Updater("1106434818:AAH1RTWxMFDTyj9EQ3LaIUN64s-7jkeQFPU", use_context=True)
     dp = updater.dispatcher
     echo_handler = MessageHandler(Filters.text, echo)
     dp.add_handler(echo_handler)
+    dp.add_error_handler(error)
     updater.start_polling()
     updater.idle()
 
