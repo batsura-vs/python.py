@@ -30,51 +30,55 @@ class PassportData:
         self.userId = self.userId
 
 
-def inputFirstName(data):
+def inputFirstName(data, update):
     if data.phase is not Phase.INPUT_FIRSTNAME:
         return
-    data.firstName = input('введи своё имя\n')
+    data.firstName = update.message.text
+    update.message.reply_text('введи свою фамилию')
     data.phase = Phase(data.phase.value + 1)
 
 
-def inputSurName(data):
+def inputSurName(data, update):
     if data.phase is not Phase.INPUT_SURNAME:
         return
-    data.surName = input('введи свою фамилия\n')
+    data.surName = update.message.text
+    update.message.reply_text('Введите дату рождения в формате дд.мм.гггг')
     data.phase = Phase(data.phase.value + 1)
 
 
-def printData(data):
-    print(data)
+def printData(data, update):
+    if data.phase is not Phase.DONE:
+        return
+    update.message.reply_text('Ты {data.firstName}')
 
 
-def inputBorn(data):
+def inputBorn(data, update):
     if data.phase is not Phase.INPUT_BORN:
         return
     try:
-        dateStr = input('Введите дату рождения в формате дд.мм.гггг:\n')
-        data.born = datetime.strptime(dateStr, '%d.%m.%Y')
+        data.born = datetime.strptime(update.message.text, '%d.%m.%Y')
         data.phase = Phase(data.phase.value + 1)
     except ValueError:
+        update.message.reply_text('Введите дату рождения в формате дд.мм.гггг')
         return
 
 
-handlers = [inputFirstName, inputSurName, inputBorn]
+def getUserContext(update):
+    key=update.message.chat.username
+    userData=users.get(key)
+    if userData is None:
+        userData = PassportData()
+    return userData
 
+users = dict()
+handlers = [inputFirstName, inputSurName, inputBorn, printData]
 
-def handeEvent(data):
-    for handler in handlers:
-        handler(data)
-    if data.phase is Phase.DONE:
-        return False
-    else:
-        return True
-
-
-def echo(update, context):
+def handleEvent(update, context):
     """Echo the user message."""
-    print(update.message.chat.username)
-    update.message.reply_text(update)
+    data = getUserContext(update)
+    logger.info(update.message.chat.username)
+    for handler in handlers:
+        handler(data, update)
 
 
 """userData = PassportData()
@@ -95,7 +99,7 @@ def error(update, context):
 def main():
     updater = Updater("1106434818:AAH1RTWxMFDTyj9EQ3LaIUN64s-7jkeQFPU", use_context=True)
     dp = updater.dispatcher
-    echo_handler = MessageHandler(Filters.text, echo)
+    echo_handler = MessageHandler(Filters.text, handleEvent)
     dp.add_handler(echo_handler)
     dp.add_error_handler(error)
     updater.start_polling()
