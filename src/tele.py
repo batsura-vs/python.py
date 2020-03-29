@@ -71,9 +71,11 @@ def handeEvent(data):
         return True
 
 
-def start(update, context):
+def echo(update, context):
     """Echo the user message."""
-    update.message.reply_text('меее')
+    print(update)
+    print(context)
+    update.message.reply_text(update)
 
 
 """userData = PassportData()
@@ -88,7 +90,8 @@ printData(userData)
 def main():
     updater = Updater("1106434818:AAH1RTWxMFDTyj9EQ3LaIUN64s-7jkeQFPU", use_context=True)
     dp = updater.dispatcher
-    dp.add_handler(CommandHandler("start", start))
+    echo_handler = MessageHandler(Filters.text, echo)
+    dp.add_handler(echo_handler)
     updater.start_polling()
     updater.idle()
 
