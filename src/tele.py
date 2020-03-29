@@ -73,8 +73,7 @@ def handeEvent(data):
 
 def echo(update, context):
     """Echo the user message."""
-    print(update)
-    print(context)
+    print(update.message.chat.username)
     update.message.reply_text(update)
 
 
