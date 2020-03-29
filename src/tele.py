@@ -32,35 +32,36 @@ class PassportData:
 
 def inputFirstName(data, update):
     if data.phase is not Phase.INPUT_FIRSTNAME:
-        return
+        return False
     data.firstName = update.message.text
     update.message.reply_text('введи свою фамилию')
     data.phase = Phase(data.phase.value + 1)
-
+    return True
 
 def inputSurName(data, update):
     if data.phase is not Phase.INPUT_SURNAME:
-        return
+        return False
     data.surName = update.message.text
     update.message.reply_text('Введите дату рождения в формате дд.мм.гггг')
     data.phase = Phase(data.phase.value + 1)
-
+    return True
 
 def printData(data, update):
     if data.phase is not Phase.DONE:
-        return
+        return False
     update.message.reply_text('Ты {data.firstName}')
-
+    return True
 
 def inputBorn(data, update):
     if data.phase is not Phase.INPUT_BORN:
-        return
+        return False
     try:
         data.born = datetime.strptime(update.message.text, '%d.%m.%Y')
         data.phase = Phase(data.phase.value + 1)
     except ValueError:
         update.message.reply_text('Введите дату рождения в формате дд.мм.гггг')
-        return
+        return False
+    return True
 
 
 def getUserContext(update):
@@ -78,7 +79,8 @@ def handleEvent(update, context):
     data = getUserContext(update)
     logger.info(update.message.chat.username)
     for handler in handlers:
-        handler(data, update)
+        if handler(data, update) is True:
+            return
 
 
 """userData = PassportData()
