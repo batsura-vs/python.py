@@ -38,6 +38,7 @@ def inputFirstName(data, update):
     data.phase = Phase(data.phase.value + 1)
     return True
 
+
 def inputSurName(data, update):
     if data.phase is not Phase.INPUT_SURNAME:
         return False
@@ -46,11 +47,13 @@ def inputSurName(data, update):
     data.phase = Phase(data.phase.value + 1)
     return True
 
+
 def printData(data, update):
     if data.phase is not Phase.DONE:
         return False
     update.message.reply_text('Ты {data.firstName}')
     return True
+
 
 def inputBorn(data, update):
     if data.phase is not Phase.INPUT_BORN:
@@ -65,15 +68,18 @@ def inputBorn(data, update):
 
 
 def getUserContext(update):
-    key=update.message.chat.username
-    userData=users.get(key)
+    key = update.message.chat.username
+    userData = users.get(key)
     if userData is None:
         userData = PassportData()
+        users[key] = userData
     return userData
 
-users={}
+
+users = {}
 
 handlers = [inputFirstName, inputSurName, inputBorn, printData]
+
 
 def handleEvent(update, context):
     """Echo the user message."""
