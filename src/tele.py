@@ -71,13 +71,17 @@ def getUserContext(update):
         userData = PassportData()
     return userData
 
-users = dict()
+users={}
+
 handlers = [inputFirstName, inputSurName, inputBorn, printData]
 
 def handleEvent(update, context):
     """Echo the user message."""
     data = getUserContext(update)
+
     logger.info(update.message.chat.username)
+    logger.info(data)
+
     for handler in handlers:
         if handler(data, update) is True:
             return
