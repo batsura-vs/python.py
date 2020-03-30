@@ -26,16 +26,27 @@ class PassportData:
     userId: str = "unknown"
     phase: Phase = Phase.INPUT_FIRSTNAME
 
-    def __init__(self):
-        self.userId = self.userId
+
+def start(update, context):
+    """Send a message when the command /start is issued."""
+    update.message.reply_text('привет,как тебя зовут?')
+
+
+def __init__(self):
+    self.userId = self.userId
+
+
+def sendMsgs(incPhase, data, update):
+    if incPhase is True:
+        data.phase = Phase(data.phase.value + 1)
+    update.message.reply_text(msgs.get(data.phase))
 
 
 def inputFirstName(data, update):
     if data.phase is not Phase.INPUT_FIRSTNAME:
         return False
     data.firstName = update.message.text
-    update.message.reply_text('введи свою фамилию')
-    data.phase = Phase(data.phase.value + 1)
+    sendMsgs(True, data, update)
     return True
 
 
@@ -43,15 +54,14 @@ def inputSurName(data, update):
     if data.phase is not Phase.INPUT_SURNAME:
         return False
     data.surName = update.message.text
-    update.message.reply_text('Введите дату рождения в формате дд.мм.гггг')
-    data.phase = Phase(data.phase.value + 1)
+    sendMsgs(True, data, update)
     return True
 
 
 def printData(data, update):
     if data.phase is not Phase.DONE:
         return False
-    update.message.reply_text('Ты {data.firstName}')
+    update.message.reply_text('Ты ', data.firstName)
     return True
 
 
@@ -62,7 +72,7 @@ def inputBorn(data, update):
         data.born = datetime.strptime(update.message.text, '%d.%m.%Y')
         data.phase = Phase(data.phase.value + 1)
     except ValueError:
-        update.message.reply_text('Введите дату рождения в формате дд.мм.гггг')
+        sendMsgs(False, data, update)
         return False
     return True
 
@@ -76,6 +86,8 @@ def getUserContext(update):
     return userData
 
 
+msgs = {Phase.INPUT_FIRSTNAME: "Введите имя", Phase.INPUT_SURNAME: "Введите фамилию",
+        Phase.INPUT_BORN: "Введите дату рождения в формате дд.мм.гггг"}
 users = {}
 
 handlers = [inputFirstName, inputSurName, inputBorn, printData]
@@ -116,6 +128,7 @@ def main():
     dp.add_error_handler(error)
     updater.start_polling()
     updater.idle()
+    dp.add_handler(CommandHandler("start", start))
 
 
 if __name__ == '__main__':
