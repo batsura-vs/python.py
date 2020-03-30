@@ -32,8 +32,6 @@ def start(update, context):
     update.message.reply_text('привет,как тебя зовут?')
 
 
-def __init__(self):
-    self.userId = self.userId
 
 
 def sendMsgs(incPhase, data, update):
@@ -98,7 +96,6 @@ def handleEvent(update, context):
     data = getUserContext(update)
 
     logger.info(update.message.chat.username)
-    logger.info(data)
 
     for handler in handlers:
         if handler(data, update) is True:
@@ -128,7 +125,6 @@ def main():
     dp.add_error_handler(error)
     updater.start_polling()
     updater.idle()
-    dp.add_handler(CommandHandler("start", start))
 
 
 if __name__ == '__main__':
