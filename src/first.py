@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from random import random
+import random
 from enum import Enum, auto
 from datetime import datetime
 import logging
