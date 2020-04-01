@@ -26,7 +26,7 @@ def hi(phase, update):
 
 
 def surname(phase, update):
-    logger.info('surname', phase.phase)
+    logger.info('surname'+str(phase.phase))
     if phase.phase == 1:
         update.message.reply_text('а какая фамилия у тебя?')
         phase.phase += 1
@@ -41,7 +41,7 @@ def error(update, context):
 
 
 def born(phase, update):
-    logger.info('born', phase.phase)
+    logger.info('born'+ str(phase.phase))
     if phase.phase == 2:
         try:
             update.message.reply_text('твой год рождения в формате дд.мм.гггг')
