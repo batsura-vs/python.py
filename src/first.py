@@ -30,7 +30,7 @@ class ansver:
 
 
 class randMove:
-    d = random.randrange(1, 1)
+    d = random.randrange(1, 2)
 
 
 class score:
