@@ -8,13 +8,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+
+
 @dataclass()
-class  phase:
+class phase:
     phase = 0
 
 
 def hi(phase, update):
-    logger.info('hi' + phase.phase)
+    logger.info('hi', phase.phase)
     if phase.phase == 0:
         update.message.reply_text('привет, как тебя зовут?')
         phase.phase += 1
@@ -24,7 +26,7 @@ def hi(phase, update):
 
 
 def surname(phase, update):
-    logger.info('surname',phase.phase)
+    logger.info('surname', phase.phase)
     if phase.phase == 1:
         update.message.reply_text('а какая фамилия у тебя?')
         phase.phase += 1
@@ -39,20 +41,21 @@ def error(update, context):
 
 
 def born(phase, update):
-    logger.info('born',phase.phase)
+    logger.info('born', phase.phase)
     if phase.phase == 2:
         try:
             update.message.reply_text('твой год рождения в формате дд.мм.гггг')
             god = update.message.text
             rod = datetime.strptime(update.message.text, '%d.%m.%Y')
-            phase.phase+=1
+            phase.phase += 1
             return True
         except ValueError:
             return False
 
 
 masiv = [hi, born, surname]
-phase.phase=0
+phase.phase = 0
+
 
 def sborka(update, context):
     for handler in masiv:
