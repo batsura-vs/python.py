@@ -16,6 +16,23 @@ class phase:
     phase = 0
 
 
+class chekio:
+    check: int
+
+
+chekio.check = 0
+
+
+class ansver:
+    c: int
+    a: int
+    b: int
+
+
+class randMove:
+    d = random.randrange(1,1)
+
+
 class score:
     score = 0
 
@@ -33,25 +50,62 @@ class help:
     Born: datetime
 
 
-def randomPlas(phase, update):
+def startMaths(phase, update):
     help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
-    if phase.phase >= 3:
-        update.message.reply_text('ну а теперь '+ help.name+ ' займёмся математикой')
-        while phase.phase < 30:
-            d = random.randrange(1, 1)
-            if d == 1:
-                a = random.randrange(1, 200)
-                b = random.randrange(1, 200)
-                c = a + b
-                update.message.reply_text(a, '+', b, '=')
-                maths.d = update.message.text
-                if maths.d == c:
-                    score.score = score.score + 1
-                    update.message.reply_text('молодец твой счет ='+ str(score.score))
-                    phase.phase += 1
-            else:
-                update.message.reply_text('неверно')
-                update.message.reply_text(str(a)+ '+'+str(b)+ '='+str(c))
+    if phase.phase == 3:
+        if randMove.d == 1:
+            ansver.a = random.randrange(1, 200)
+            ansver.b = random.randrange(1, 200)
+            ansver.c = ansver.a + ansver.b
+            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '+', ansver.b,'=')
+            chekio.check = 1
+        if randMove.d == 2:
+            ansver.a = random.randrange(100, 200)
+            ansver.b = random.randrange(1, 100)
+            ansver.c = ansver.a - ansver.b
+            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '-', ansver.b,'=')
+            chekio.check = 2
+        if randMove.d == 3:
+            while ansver.a%ansver.b!=0:
+                ansver.a = random.randrange(100, 200)
+                ansver.b = random.randrange(1, 100)
+                ansver.c = ansver.a / ansver.b
+                update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, ':', ansver.b,'=')
+                chekio.check = 3
+        if randMove.d == 4:
+            ansver.a = random.randrange(1, 10)
+            ansver.b = random.randrange(1, 15)
+            ansver.c = ansver.a * ansver.b
+            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '*', ansver.b,'=')
+            chekio.check = 4
+
+
+def plas(phase, update):
+    if chekio.check == 1:
+        if randMove.d == 1:
+            update.message.reply_text('молодец')
+            chekio.check = 0
+    else:
+        update.message.reply_text('неверно \n',ansver.a, '+', ansver.b, '=', ansver.c)
+        chekio.check = 0
+
+def chek(phase, update):
+    if chekio.check == 1:
+        maths.d = update.message.text
+        if maths.d == ansver.c:
+            update.message.reply_text('молодец')
+            chekio.check = 0
+        else:
+            update.message.reply_text('лапух!!!')
+            chekio.check = 0
+
+        if maths.d == c:
+            score.score = score.score + 1
+            update.message.reply_text('молодец твой счет =' + str(score.score))
+            phase.phase += 1
+        else:
+            update.message.reply_text('неверно')
+            update.message.reply_text(str(a) + '+' + str(b) + '=' + str(c))
 
 
 def hi(phase, update):
@@ -92,7 +146,7 @@ def born(phase, update):
             return False
 
 
-masiv = [hi, born, surname,randomPlas]
+masiv = [hi, born, surname, startMaths]
 phase.phase = 0
 
 
