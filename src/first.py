@@ -34,7 +34,7 @@ class help:
 
 
 def randomPlas(phase, update):
-    if phase == 3:
+    if phase >= 3:
         update.message.reply_text('ну а теперь', help.name, 'займёмся математикой')
         while phase < 30:
             d = random.randrange(1, 1)
