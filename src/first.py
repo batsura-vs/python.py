@@ -14,24 +14,52 @@ logger = logging.getLogger(__name__)
 @dataclass()
 class phase:
     phase = 0
+
+
+class score:
+    score=0
+
+
+class maths:
+    d:int
+    f:int
+    g:int
+    k:int
+
 class phase2:
     phase2 = 0
+
+
 class help:
-    name:str
-    surName:str
+    name: str
+    surName: str
     Born: datetime
 
-def random(phase2,update):
-    d=random.randrange(1,4)
-    if d == 1:
-        update.message.reply_text('ну а теперь',)
+
+def randomPlas(phase2, update):
+    if phase2<3:
+        update.message.reply_text('ну а теперь', help.name, 'займёмся математикой')
+        while phase2.phase2 < 30:
+            d = random.randrange(1, 1)
+        if d == 1:
+            a = random.randrange(1, 200)
+            b = random.randrange(1, 200)
+            c = a + b
+            update.message.reply_text(a,'+',b,'=')
+            maths.d = update.message.text
+            if maths.d == c:
+                score.score=score.score+1
+                update.message.reply_text('молодец твой счет =', score.score)
+                phase2.phase2=phase2.phase2+1
+            else:
+                update.message.reply_text('неверно')
 
 
 def hi(phase, update):
     logger.info('hi ' + str(phase.phase))
     if phase.phase == 0:
         update.message.reply_text('привет, как тебя зовут?')
-        help.name=update.message.text
+        help.name = update.message.text
         phase.phase += 1
         return True
     else:
@@ -39,10 +67,10 @@ def hi(phase, update):
 
 
 def surname(phase, update):
-    logger.info('surname'+str(phase.phase))
+    logger.info('surname' + str(phase.phase))
     if phase.phase == 1:
         update.message.reply_text('а какая фамилия у тебя?')
-        help.surName=update.message.text
+        help.surName = update.message.text
         phase.phase += 1
         return True
     else:
@@ -54,15 +82,15 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
-def born(phase, update,phase2):
-    logger.info('born'+ str(phase.phase))
+def born(phase, update):
+    logger.info('born' + str(phase.phase))
     if phase.phase == 2:
         try:
             update.message.reply_text('твой год рождения в формате дд.мм.гггг')
             help.Born = update.message.text
-            rod = datetime.strptime(update.message.text, '%d.%m.%Y')
+            help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
             phase.phase += 1
-            phase2.phase2 += 1
+            phase2.phase2=phase2.phase2+1
             return True
         except ValueError:
             return False
@@ -70,6 +98,7 @@ def born(phase, update,phase2):
 
 masiv = [hi, born, surname]
 phase.phase = 0
+phase2.phase2 = 0
 
 
 def sborka(update, context):
