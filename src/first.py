@@ -34,9 +34,9 @@ class help:
 
 
 def randomPlas(phase, update):
-    if phase >= 3:
+    if phase.phase >= 3:
         update.message.reply_text('ну а теперь', help.name, 'займёмся математикой')
-        while phase < 30:
+        while phase.phase < 30:
             d = random.randrange(1, 1)
         if d == 1:
             a = random.randrange(1, 200)
@@ -47,7 +47,7 @@ def randomPlas(phase, update):
             if maths.d == c:
                 score.score = score.score + 1
                 update.message.reply_text('молодец твой счет =', score.score)
-                phase += 1
+                phase.phase += 1
             else:
                 update.message.reply_text('неверно')
                 update.message.reply_text(a, '+', b, '=',c)
@@ -85,6 +85,7 @@ def born(phase, update):
     if phase.phase == 2:
         try:
             update.message.reply_text('твой год рождения в формате дд.мм.гггг')
+            help.Born = update.message.text
             help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
             phase.phase += 1
             return True
