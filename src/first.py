@@ -17,17 +17,14 @@ class phase:
 
 
 class score:
-    score=0
+    score = 0
 
 
 class maths:
-    d:int
-    f:int
-    g:int
-    k:int
-
-class phase2:
-    phase2 = 0
+    d: int
+    f: int
+    g: int
+    k: int
 
 
 class help:
@@ -36,23 +33,24 @@ class help:
     Born: datetime
 
 
-def randomPlas(phase2, update):
-    if phase2<3:
+def randomPlas(phase, update):
+    if phase <= 3:
         update.message.reply_text('ну а теперь', help.name, 'займёмся математикой')
-        while phase2.phase2 < 30:
+        while phase < 30:
             d = random.randrange(1, 1)
         if d == 1:
             a = random.randrange(1, 200)
             b = random.randrange(1, 200)
             c = a + b
-            update.message.reply_text(a,'+',b,'=')
+            update.message.reply_text(a, '+', b, '=')
             maths.d = update.message.text
             if maths.d == c:
-                score.score=score.score+1
+                score.score = score.score + 1
                 update.message.reply_text('молодец твой счет =', score.score)
-                phase2.phase2=phase2.phase2+1
+                phase += 1
             else:
                 update.message.reply_text('неверно')
+                update.message.reply_text(a, '+', b, '=',c)
 
 
 def hi(phase, update):
@@ -90,7 +88,6 @@ def born(phase, update):
             help.Born = update.message.text
             help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
             phase.phase += 1
-            phase2.phase2=phase2.phase2+1
             return True
         except ValueError:
             return False
@@ -98,7 +95,6 @@ def born(phase, update):
 
 masiv = [hi, born, surname]
 phase.phase = 0
-phase2.phase2 = 0
 
 
 def sborka(update, context):
