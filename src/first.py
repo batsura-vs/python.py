@@ -143,7 +143,7 @@ def born(phase, update):
             return False
 
 
-masiv = [hi, born, surname, startMaths]
+masiv = [hi, born, surname, startMaths,plas]
 phase.phase = 0
 
 
