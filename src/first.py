@@ -34,6 +34,7 @@ class help:
 
 
 def randomPlas(phase, update):
+    help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
     if phase.phase >= 3:
         update.message.reply_text('ну а теперь '+ help.name+ ' займёмся математикой')
         while phase.phase < 30:
@@ -57,7 +58,6 @@ def hi(phase, update):
     logger.info('hi ' + str(phase.phase))
     if phase.phase == 0:
         update.message.reply_text('привет, как тебя зовут?')
-        help.name = update.message.text
         phase.phase += 1
         return True
     else:
@@ -68,7 +68,7 @@ def surname(phase, update):
     logger.info('surname' + str(phase.phase))
     if phase.phase == 1:
         update.message.reply_text('а какая фамилия у тебя?')
-        help.surName = update.message.text
+        help.name = update.message.text
         phase.phase += 1
         return True
     else:
@@ -85,8 +85,7 @@ def born(phase, update):
     if phase.phase == 2:
         try:
             update.message.reply_text('твой год рождения в формате дд.мм.гггг')
-            help.Born = update.message.text
-            help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
+            help.surName = update.message.text
             phase.phase += 1
             return True
         except ValueError:
