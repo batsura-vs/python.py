@@ -85,7 +85,6 @@ def born(phase, update):
     if phase.phase == 2:
         try:
             update.message.reply_text('твой год рождения в формате дд.мм.гггг')
-            help.Born = update.message.text
             help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
             phase.phase += 1
             return True
@@ -93,7 +92,7 @@ def born(phase, update):
             return False
 
 
-masiv = [hi, born, surname]
+masiv = [hi, born, surname,randomPlas]
 phase.phase = 0
 
 
