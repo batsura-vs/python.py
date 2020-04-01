@@ -16,7 +16,7 @@ class phase:
 
 
 def hi(phase, update):
-    logger.info('hi', phase.phase)
+    logger.info('hi ' + str(phase.phase))
     if phase.phase == 0:
         update.message.reply_text('привет, как тебя зовут?')
         phase.phase += 1
