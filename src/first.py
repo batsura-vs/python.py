@@ -30,7 +30,7 @@ class ansver:
 
 
 class randMove:
-    d = random.randrenge(1, 1)
+    d = random.randrange(1, 1)
 
 
 class score:
@@ -54,30 +54,30 @@ def startMaths(phase, update):
     help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
     if phase.phase == 3:
         if randMove.d == 1:
-            ansver.a = random.randrenge(1, 200)
-            ansver.b = random.randrenge(1, 200)
+            ansver.a = random.randrange(1, 200)
+            ansver.b = random.randrange(1, 200)
             ansver.c = ansver.a + ansver.b
             update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '+', ansver.b,
                                       '=')
             chekio.check = 1
         if randMove.d == 2:
-            ansver.a = random.randrenge(100, 200)
-            ansver.b = random.randrenge(1, 100)
+            ansver.a = random.randrange(100, 200)
+            ansver.b = random.randrange(1, 100)
             ansver.c = ansver.a - ansver.b
             update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '-', ansver.b,
                                       '=')
             chekio.check = 2
         if randMove.d == 3:
             while ansver.a % ansver.b != 0:
-                ansver.a = random.randrenge(100, 200)
-                ansver.b = random.randrenge(1, 100)
+                ansver.a = random.randrange(100, 200)
+                ansver.b = random.randrange(1, 100)
                 ansver.c = ansver.a / ansver.b
                 update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, ':',
                                           ansver.b, '=')
                 chekio.check = 3
         if randMove.d == 4:
-            ansver.a = random.randrenge(1, 10)
-            ansver.b = random.randrenge(1, 15)
+            ansver.a = random.randrange(1, 10)
+            ansver.b = random.randrange(1, 15)
             ansver.c = ansver.a * ansver.b
             update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '*', ansver.b,
                                       '=')
