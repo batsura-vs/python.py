@@ -35,7 +35,7 @@ class help:
 
 def randomPlas(phase, update):
     if phase.phase >= 3:
-        update.message.reply_text('ну а теперь', help.name, 'займёмся математикой')
+        update.message.reply_text('ну а теперь'+ help.name+ 'займёмся математикой')
         while phase.phase < 30:
             d = random.randrange(1, 1)
         if d == 1:
@@ -46,11 +46,11 @@ def randomPlas(phase, update):
             maths.d = update.message.text
             if maths.d == c:
                 score.score = score.score + 1
-                update.message.reply_text('молодец твой счет =', score.score)
+                update.message.reply_text('молодец твой счет ='+ str(score.score))
                 phase.phase += 1
             else:
                 update.message.reply_text('неверно')
-                update.message.reply_text(a, '+', b, '=',c)
+                update.message.reply_text(str(a)+ '+'+str(b)+ '='+str(c))
 
 
 def hi(phase, update):
