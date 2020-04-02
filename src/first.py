@@ -110,8 +110,8 @@ def minCheck(phase, update):
     if phase.check != 2:
         return False
     else:
-        logger.info("minCheck start")
         d = update.message.text
+        logger.info("minCheck start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
             update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
