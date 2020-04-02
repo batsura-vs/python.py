@@ -27,10 +27,8 @@ class Phase:
 
 def startMaths(phase, update):
     if phase.phase == 2:
-        logger.info("startMath start")
         phase.surName=update.message.text
-        logger.info("startMath start2")
-        logger.info("startMath start3")
+        logger.info("startMath start")
         phase.a = random.randrange(1, 200)
         phase.b = random.randrange(1, 200)
         phase.c = phase.a + phase.b
@@ -57,7 +55,7 @@ def delen(phase, update):
 def umno(phase, update):
     if phase.randMove != 4:
         return False
-    logger.info("delen start")
+    logger.info("umno start")
     phase.a = random.randrange(1, 20)
     phase.b = random.randrange(1, 20)
     phase.c = phase.a * phase.b
@@ -69,7 +67,7 @@ def umno(phase, update):
 def min(phase, update):
     if phase.randMove != 2:
         return False
-    logger.info("delen start")
+    logger.info("min start")
     phase.a = random.randrange(100, 200)
     phase.b = random.randrange(1, 100)
     phase.c = phase.a - phase.b
@@ -81,7 +79,7 @@ def min(phase, update):
 def plas(phase, update):
     if phase.randMove != 1:
         return False
-    logger.info("delen start")
+    logger.info("plas start")
     phase.a = random.randrange(1, 200)
     phase.b = random.randrange(1, 200)
     phase.c = phase.a + phase.b
@@ -94,7 +92,7 @@ def plasCheck(phase, update):
     if phase.check != 1:
         return False
     else:
-        logger.info("delen start")
+        logger.info("plasCheck start")
         d = update.message.text
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
@@ -112,7 +110,7 @@ def minCheck(phase, update):
     if phase.check != 2:
         return False
     else:
-        logger.info("delen start")
+        logger.info("minCheck start")
         d = update.message.text
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
@@ -131,7 +129,7 @@ def delenChek(phase, update):
         return False
     else:
         d = update.message.text
-        logger.info("delen start")
+        logger.info("delenCheck start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
             update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
@@ -149,7 +147,7 @@ def umnoChek(phase, update):
         return False
     else:
         d = update.message.text
-        logger.info("delen start")
+        logger.info("umnoCheck start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
             update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
