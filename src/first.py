@@ -37,6 +37,7 @@ def startMaths(phase, update):
                'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
            '=')
         phase.check = 1
+        return True
 
 
 def delen(phase, update):
