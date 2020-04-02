@@ -21,7 +21,7 @@ class Phase:
     name = None
     surName = None
     born = None
-
+    check=None
 
 def startMaths(phase, update):
     if phase.phase == 3:
@@ -33,9 +33,10 @@ def startMaths(phase, update):
             phase.a = random.randrange(1, 200)
             phase.b = random.randrange(1, 200)
             phase.c = phase.a + phase.b
-            update.message.reply_text('ну а теперь ' + phase.name + ' займёмся математикой \n'+ str(phase.a) + '+'+ str(phase.b)+
-                                      '=')
-            phase.phase+=1
+            update.message.reply_text(
+                'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
+                '=')
+            phase.phase += 1
             phase.check = 1
         '''if phase.randMove == 2:
             phase.a = random.randrange(100, 200)
@@ -62,16 +63,16 @@ def startMaths(phase, update):
 
 
 def plas(phase, update):
-    if phase.check == 1:
-        d=update.message.text
+    if phase.phase != 4:
+        return False
+    if phase. == 1:
+        d = update.message.text
         if phase.c == d:
             update.message.reply_text('молодец')
             phase.check = 0
         else:
             update.message.reply_text('неверно \n', phase.a, '+', phase.b, '=', phase.c)
             phase.check = 0
-
-
 
 
 def hi(phase, update):
@@ -120,7 +121,7 @@ def getUserContext(update):
 
 
 users = {}
-masiv = [hi, born, surname, startMaths,plas]
+masiv = [hi, born, surname, startMaths, plas]
 
 
 def sborka(update, context):
