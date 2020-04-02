@@ -14,34 +14,77 @@ logger = logging.getLogger(__name__)
 @dataclass()
 class Phase:
     phase = 0
-    randMove = 1
+    randMove = 0
     c = 0
     a = 0
     b = 0
     name = None
     surName = None
     born = None
-    check=None
-    d=None
+    check = None
+    d = None
+
 
 def startMaths(phase, update):
     if phase.phase == 3:
         logger.info("startMath start")
         phase.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
         logger.info("startMath start2")
-        if phase.randMove == 1:
-            logger.info("startMath start3")
-            phase.a = random.randrange(1, 200)
-            phase.b = random.randrange(1, 200)
-            phase.c = phase.a + phase.b
-            update.message.reply_text(
-                'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
-                '=')
-            phase.phase += 1
+        logger.info("startMath start3")
+        phase.a = random.randrange(1, 200)
+        phase.b = random.randrange(1, 200)
+        phase.c = phase.a + phase.b
+        update.message.reply_text(
+            'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
+            '=')
+        phase.check = 1
 
 
 def plas(phase, update):
-    if phase.phase != 4:
+    if phase.randMove != 1:
+        return False
+        phase.a = random.randrange(1, 200)
+        phase.b = random.randrange(1, 200)
+        phase.c = phase.a + phase.b
+        update.message.reply_text(str(a) + '+' + str(b) + '=')
+        phase.check = 1
+
+
+def plasCheck(phase, update):
+    if phase.check != 1:
+        return False
+    else:
+        d = update.message.text
+        if phase.c == int(d):
+            update.message.reply_text('молодец')
+            phase.check = 0
+            phase.randMove = random.randrange(1, 4)
+            return True
+        if phase.c != int(d):
+            update.message.reply_text('неверно \n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c))
+            phase.check=0
+            phase.randMove = random.randrange(1, 4)
+            return True
+
+def minCheck(phase,update):
+    if phase.check != 2:
+        return False
+    else:
+        d = update.message.text
+        if phase.c == int(d):
+            update.message.reply_text('молодец\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
+            phase.randMove = random.randrange(1, 4)
+            return True
+        if phase.c != int(d):
+            update.message.reply_text('неверно \n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
+            phase.randMove = random.randrange(1, 4)
+            return True
+
+
+def delenchek(phase, update):
+    if phase.phase != 6:
         return False
     else:
         d = update.message.text
@@ -50,7 +93,8 @@ def plas(phase, update):
             phase.check = 0
             return True
         if phase.c != int(d):
-            update.message.reply_text('неверно \n'+str(phase.a)+ '+'+str(phase.b)+ '='+ str(phase.c))
+            update.message.reply_text('неверно \n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+
 
 def hi(phase, update):
     logger.info('hi ' + str(phase.phase))
