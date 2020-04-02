@@ -23,6 +23,8 @@ class Phase:
     born = None
     check = None
     d = None
+    g = None
+    h = None
 
 
 def startMaths(phase, update):
@@ -101,13 +103,15 @@ def plasCheck(phase, update):
         d = update.message.text
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text(phase.name+' молодец напиши что бы продолжить')
+            update.message.reply_text(phase.name+' молодец напиши класс 1 продолжить \n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.g +=1
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text('неверно '+phase.surName+'  напиши что бы продолжить\n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c))
+            update.message.reply_text('неверно '+phase.surName+'  напиши 1 чтобы продолжить\n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.h += 1
             return True
 
 
@@ -119,13 +123,15 @@ def minCheck(phase, update):
         logger.info("minCheck start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text(phase.name+' молодец напиши что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            update.message.reply_text(phase.name+' молодец напиши 1 чтобы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.g +=1
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text('неверно '+phase.name+' напиши что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            update.message.reply_text('неверно '+phase.name+' напиши 1 чтобы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.h += 1
             return True
 
 
@@ -137,13 +143,15 @@ def delenChek(phase, update):
         logger.info("delenCheck start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text('молодец '+phase.name+' напиши что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+            update.message.reply_text('молодец '+phase.name+' напиши 1 чтобы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.g +=1
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text(phase.surName+',неверно,напиши что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+            update.message.reply_text(phase.surName+',неверно,напиши 1 чтобы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.h += 1
             return True
 
 
@@ -155,13 +163,15 @@ def umnoChek(phase, update):
         logger.info("umnoCheck start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text(phase.surName+' молодец напиши что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            update.message.reply_text(phase.surName+' молодец напиши 1 чтобы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.g +=1
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
-            update.message.reply_text('неверно '+phase.name+' напиши что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            update.message.reply_text('неверно '+phase.name+' напиши 1 чтобы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
             phase.check = 0
+            phase.h += 1
             return True
 
 
