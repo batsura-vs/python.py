@@ -18,9 +18,6 @@ class Phase:
     c = 0
     a = 0
     b = 0
-
-
-class help:
     name: str
     surName: str
     Born: datetime
@@ -29,12 +26,12 @@ class help:
 def startMaths(phase, update):
     if phase.phase == 3:
         logger.info("startMath start")
-        help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
+        phase.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
         if phase.randMove == 1:
             phase.a = random.randrange(1, 200)
             phase.b = random.randrange(1, 200)
             phase.c = phase.a + phase.b
-            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, '+', phase.b,
+            update.message.reply_text('ну а теперь ' + phase.name + ' займёмся математикой \n ', phase.a, '+', phase.b,
                                       '=')
             chekio.check = 1
         '''if phase.randMove == 2:
@@ -96,7 +93,7 @@ def surname(phase, update):
     logger.info('surname' + str(phase.phase))
     if phase.phase == 1:
         update.message.reply_text('а какая фамилия у тебя?')
-        help.name = update.message.text
+        phase.name = update.message.text
         phase.phase += 1
         return True
     else:
@@ -129,7 +126,7 @@ def getUserContext(update):
 
 
 users = {}
-masiv = [hi, born, surname]
+masiv = [hi, born, surname, startMaths]
 
 
 def sborka(update, context):
