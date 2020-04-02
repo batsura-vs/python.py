@@ -175,15 +175,6 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
-def born(phase, update):
-    logger.info('born' + str(phase.phase))
-    if phase.phase == 2:
-        try:
-            update.message.reply_text('твой год рождения в формате дд.мм.гггг')
-            phase.phase += 1
-            return True
-        except ValueError:
-            return False
 
 
 def getUserContext(update):
@@ -196,7 +187,7 @@ def getUserContext(update):
 
 
 users = {}
-masiv = [hi, born, surname, startMaths, plasCheck, plas,min,minCheck,umno,umnoChek,delen,delenChek]
+masiv = [hi, surname, startMaths, plasCheck, plas,min,minCheck,umno,umnoChek,delen,delenChek]
 
 
 def sborka(update, context):
