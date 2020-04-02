@@ -37,8 +37,39 @@ def startMaths(phase, update):
         update.message.reply_text(
             'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
             '=')
-        phase.phase+=1
+        phase.phase += 1
         phase.check = 1
+
+
+def delen(phase, update):
+    if phase.randMove != 3:
+        return False
+    while phase.a % phase.b != 0:
+        phase.a = random.randrange(1, 200)
+        phase.b = random.randrange(1, 20)
+        phase.c = phase.a / phase.b
+    update.message.reply_text(str(phase.a) + ':' + str(phase.b) + '=')
+    phase.check = 3
+
+
+def umno(phase, update):
+    if phase.randMove != 1:
+        return False
+    phase.a = random.randrange(1, 20)
+    phase.b = random.randrange(1, 20)
+    phase.c = phase.a * phase.b
+    update.message.reply_text(str(phase.a) + '*' + str(phase.b) + '=')
+    phase.check = 4
+
+
+def min(phase, update):
+    if phase.randMove != 1:
+        return False
+    phase.a = random.randrange(100, 200)
+    phase.b = random.randrange(1, 100)
+    phase.c = phase.a - phase.b
+    update.message.reply_text(str(phase.a) + '-' + str(phase.b) + '=')
+    phase.check = 4
 
 
 def plas(phase, update):
@@ -63,11 +94,12 @@ def plasCheck(phase, update):
             return True
         if phase.c != int(d):
             update.message.reply_text('неверно \n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c))
-            phase.check=0
+            phase.check = 0
             phase.randMove = random.randrange(1, 4)
             return True
 
-def minCheck(phase,update):
+
+def minCheck(phase, update):
     if phase.check != 2:
         return False
     else:
@@ -85,16 +117,37 @@ def minCheck(phase,update):
 
 
 def delenChek(phase, update):
-    if phase.phase != 6:
+    if phase.check != 3:
         return False
     else:
         d = update.message.text
         if phase.c == int(d):
-            update.message.reply_text('молодец')
+            update.message.reply_text('молодец\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
+            phase.randMove = random.randrange(1, 4)
             return True
         if phase.c != int(d):
             update.message.reply_text('неверно \n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
+            phase.randMove = random.randrange(1, 4)
+            return False
+
+
+def umnoChek(phase, update):
+    if phase.check != 4:
+        return False
+    else:
+        d = update.message.text
+        if phase.c == int(d):
+            update.message.reply_text('молодец\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
+            phase.randMove = random.randrange(1, 4)
+            return True
+        if phase.c != int(d):
+            update.message.reply_text('неверно \n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
+            phase.randMove = random.randrange(1, 4)
+            return False
 
 
 def hi(phase, update):
@@ -143,7 +196,7 @@ def getUserContext(update):
 
 
 users = {}
-masiv = [hi, born, surname, startMaths, plasCheck]
+masiv = [hi, born, surname, startMaths, plasCheck, plas,min,minCheck,umno,umnoChek,delen,delenChek]
 
 
 def sborka(update, context):
