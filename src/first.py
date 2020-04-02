@@ -12,8 +12,9 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass()
-class phase:
+class Phase:
     phase = 0
+    randMove = 1
 
 
 class chekio:
@@ -27,10 +28,6 @@ class ansver:
     c: int
     a: int
     b: int
-
-
-class randMove:
-    d = 1
 
 class score:
     score = 0
@@ -51,22 +48,23 @@ class help:
 
 def startMaths(phase, update):
     if phase.phase == 3:
+        logger.info("startMath start")
         help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
-        if randMove.d == 1:
+        if phase.randMove == 1:
             ansver.a = random.randrange(1, 200)
             ansver.b = random.randrange(1, 200)
             ansver.c = ansver.a + ansver.b
             update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '+', ansver.b,
                                       '=')
             chekio.check = 1
-        if randMove.d == 2:
+        if phase.randMove == 2:
             ansver.a = random.randrange(100, 200)
             ansver.b = random.randrange(1, 100)
             ansver.c = ansver.a - ansver.b
             update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '-', ansver.b,
                                       '=')
             chekio.check = 2
-        if randMove.d == 3:
+        if phase.randMove == 3:
             while ansver.a % ansver.b != 0:
                 ansver.a = random.randrange(100, 200)
                 ansver.b = random.randrange(1, 100)
@@ -74,7 +72,7 @@ def startMaths(phase, update):
                 update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, ':',
                                           ansver.b, '=')
                 chekio.check = 3
-        if randMove.d == 4:
+        if phase.randMove == 4:
             ansver.a = random.randrange(1, 10)
             ansver.b = random.randrange(1, 15)
             ansver.c = ansver.a * ansver.b
@@ -85,7 +83,7 @@ def startMaths(phase, update):
 
 def plas(phase, update):
     if chekio.check == 1:
-        if randMove.d == 1:
+        if phase.randMove == 1:
             update.message.reply_text('молодец')
             chekio.check = 0
     else:
@@ -140,12 +138,19 @@ def born(phase, update):
         except ValueError:
             return False
 
+def getUserContext(update):
+    key = update.message.chat.username
+    userData = users.get(key)
+    if userData is None:
+        userData = Phase()
+        users[key] = userData
+    return userData
 
+users = {}
 masiv = [hi, born, surname, startMaths,plas]
-phase.phase = 0
-
 
 def sborka(update, context):
+    phase=getUserContext(update)
     for handler in masiv:
         if handler(phase, update) is True:
             return
