@@ -15,6 +15,9 @@ logger = logging.getLogger(__name__)
 class Phase:
     phase = 0
     randMove = 1
+    c: int
+    a: int
+    b: int
 
 
 class chekio:
@@ -23,11 +26,6 @@ class chekio:
 
 chekio.check = 0
 
-
-class ansver:
-    c: int
-    a: int
-    b: int
 
 class score:
     score = 0
@@ -51,34 +49,34 @@ def startMaths(phase, update):
         logger.info("startMath start")
         help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
         if phase.randMove == 1:
-            ansver.a = random.randrange(1, 200)
-            ansver.b = random.randrange(1, 200)
-            ansver.c = ansver.a + ansver.b
-            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '+', ansver.b,
+            phase.a = random.randrange(1, 200)
+            phase.b = random.randrange(1, 200)
+            phase.c = phase.a + phase.b
+            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, '+', phase.b,
                                       '=')
             chekio.check = 1
-        if phase.randMove == 2:
-            ansver.a = random.randrange(100, 200)
-            ansver.b = random.randrange(1, 100)
-            ansver.c = ansver.a - ansver.b
-            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '-', ansver.b,
+        '''if phase.randMove == 2:
+            phase.a = random.randrange(100, 200)
+            phase.b = random.randrange(1, 100)
+            phase.c = phase.a - phase.b
+            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, '-', phase.b,
                                       '=')
             chekio.check = 2
         if phase.randMove == 3:
-            while ansver.a % ansver.b != 0:
-                ansver.a = random.randrange(100, 200)
-                ansver.b = random.randrange(1, 100)
-                ansver.c = ansver.a / ansver.b
-                update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, ':',
-                                          ansver.b, '=')
+            while phase.a % phase.b != 0:
+                phase.a = random.randrange(100, 200)
+                phase.b = random.randrange(1, 100)
+                phase.c = phase.a / phase.b
+                update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, ':',
+                                          phase.b, '=')
                 chekio.check = 3
         if phase.randMove == 4:
-            ansver.a = random.randrange(1, 10)
-            ansver.b = random.randrange(1, 15)
-            ansver.c = ansver.a * ansver.b
-            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', ansver.a, '*', ansver.b,
+            phase.a = random.randrange(1, 10)
+            phase.b = random.randrange(1, 15)
+            phase.c = phase.a * phase.b
+            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, '*', phase.b,
                                       '=')
-            chekio.check = 4
+            chekio.check = 4'''
 
 
 def plas(phase, update):
@@ -87,14 +85,14 @@ def plas(phase, update):
             update.message.reply_text('молодец')
             chekio.check = 0
     else:
-        update.message.reply_text('неверно \n', ansver.a, '+', ansver.b, '=', ansver.c)
+        update.message.reply_text('неверно \n', phase.a, '+', phase.b, '=', phase.c)
         chekio.check = 0
 
 
 def chek(phase, update):
     if chekio.check == 1:
         maths.d = update.message.text
-        if maths.d == ansver.c:
+        if maths.d == phase.c:
             update.message.reply_text('молодец')
             chekio.check = 0
         else:
