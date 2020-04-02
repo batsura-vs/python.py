@@ -44,11 +44,11 @@ def startMaths(phase, update):
 def plas(phase, update):
     if phase.randMove != 1:
         return False
-        phase.a = random.randrange(1, 200)
-        phase.b = random.randrange(1, 200)
-        phase.c = phase.a + phase.b
-        update.message.reply_text(str(a) + '+' + str(b) + '=')
-        phase.check = 1
+    phase.a = random.randrange(1, 200)
+    phase.b = random.randrange(1, 200)
+    phase.c = phase.a + phase.b
+    update.message.reply_text(str(phase.a) + '+' + str(phase.b) + '=')
+    phase.check = 1
 
 
 def plasCheck(phase, update):
@@ -84,7 +84,7 @@ def minCheck(phase,update):
             return True
 
 
-def delenchek(phase, update):
+def delenChek(phase, update):
     if phase.phase != 6:
         return False
     else:
