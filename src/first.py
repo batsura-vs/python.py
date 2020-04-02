@@ -18,9 +18,9 @@ class Phase:
     c = 0
     a = 0
     b = 0
-    name: None
-    surName: None
-    born: None
+    name=None
+    surName=None
+    born=None
 
 
 def startMaths(phase, update):
