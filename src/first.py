@@ -104,6 +104,8 @@ def plasCheck(phase, update):
         if d == 'сбросить счёт':
             phase.h = 0
             phase.g = 0
+            phase.randMove = random.randrange(1, 5)
+            return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
             phase.g +=1
@@ -124,6 +126,11 @@ def minCheck(phase, update):
     else:
         d = update.message.text
         logger.info("minCheck start")
+        if d == 'сбросить счёт':
+            phase.h = 0
+            phase.g = 0
+            phase.randMove = random.randrange(1, 5)
+            return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
             phase.g +=1
@@ -144,6 +151,11 @@ def delenChek(phase, update):
     else:
         d = update.message.text
         logger.info("delenCheck start")
+        if d == 'сбросить счёт':
+            phase.h = 0
+            phase.g = 0
+            phase.randMove = random.randrange(1, 5)
+            return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
             phase.g +=1
@@ -164,6 +176,11 @@ def umnoChek(phase, update):
     else:
         d = update.message.text
         logger.info("umnoCheck start")
+        if d == 'сбросить счёт':
+            phase.h = 0
+            phase.g = 0
+            phase.randMove = random.randrange(1, 5)
+            return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
             phase.g +=1
