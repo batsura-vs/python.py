@@ -49,6 +49,7 @@ def delen(phase, update):
         phase.b = random.randrange(1, 20)
         phase.c = phase.a // phase.b
     update.message.reply_text(str(phase.a) + ':' + str(phase.b) + '=')
+    phase.randMove=0
     phase.check = 3
 
 
@@ -59,6 +60,7 @@ def umno(phase, update):
     phase.b = random.randrange(1, 20)
     phase.c = phase.a * phase.b
     update.message.reply_text(str(phase.a) + '*' + str(phase.b) + '=')
+    phase.randMove=0
     phase.check = 4
 
 
@@ -69,6 +71,7 @@ def min(phase, update):
     phase.b = random.randrange(1, 100)
     phase.c = phase.a - phase.b
     update.message.reply_text(str(phase.a) + '-' + str(phase.b) + '=')
+    phase.randMove=0
     phase.check = 2
 
 
@@ -79,6 +82,7 @@ def plas(phase, update):
     phase.b = random.randrange(1, 200)
     phase.c = phase.a + phase.b
     update.message.reply_text(str(phase.a) + '+' + str(phase.b) + '=')
+    c
     phase.check = 1
 
 
