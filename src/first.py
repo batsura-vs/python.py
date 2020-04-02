@@ -26,18 +26,17 @@ class Phase:
 
 
 def startMaths(phase, update):
-    if phase.phase != 2:
-        False
-    phase.phase += 1
-    Phase.surName=update.message.text
-    logger.info("startMath start")
-    phase.a = random.randrange(1, 200)
-    phase.b = random.randrange(1, 200)
-    phase.c = phase.a + phase.b
-    update.message.reply_text(
-           'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
-       '=')
-    phase.check = 1
+    if phase.phase == 2:
+        phase.phase += 1
+        Phase.surName=update.message.text
+        logger.info("startMath start")
+        phase.a = random.randrange(1, 200)
+        phase.b = random.randrange(1, 200)
+        phase.c = phase.a + phase.b
+        update.message.reply_text(
+               'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
+           '=')
+        phase.check = 1
 
 
 def delen(phase, update):
