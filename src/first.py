@@ -44,6 +44,7 @@ def startMaths(phase, update):
 def delen(phase, update):
     if phase.randMove != 3:
         return False
+    logger.info("delen start")
     while phase.a % phase.b != 0:
         phase.a = random.randrange(1, 200)
         phase.b = random.randrange(1, 20)
@@ -56,6 +57,7 @@ def delen(phase, update):
 def umno(phase, update):
     if phase.randMove != 4:
         return False
+    logger.info("delen start")
     phase.a = random.randrange(1, 20)
     phase.b = random.randrange(1, 20)
     phase.c = phase.a * phase.b
@@ -67,6 +69,7 @@ def umno(phase, update):
 def min(phase, update):
     if phase.randMove != 2:
         return False
+    logger.info("delen start")
     phase.a = random.randrange(100, 200)
     phase.b = random.randrange(1, 100)
     phase.c = phase.a - phase.b
@@ -78,6 +81,7 @@ def min(phase, update):
 def plas(phase, update):
     if phase.randMove != 1:
         return False
+    logger.info("delen start")
     phase.a = random.randrange(1, 200)
     phase.b = random.randrange(1, 200)
     phase.c = phase.a + phase.b
@@ -90,6 +94,7 @@ def plasCheck(phase, update):
     if phase.check != 1:
         return False
     else:
+        logger.info("delen start")
         d = update.message.text
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
@@ -107,6 +112,7 @@ def minCheck(phase, update):
     if phase.check != 2:
         return False
     else:
+        logger.info("delen start")
         d = update.message.text
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
@@ -125,6 +131,7 @@ def delenChek(phase, update):
         return False
     else:
         d = update.message.text
+        logger.info("delen start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
             update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
@@ -142,6 +149,7 @@ def umnoChek(phase, update):
         return False
     else:
         d = update.message.text
+        logger.info("delen start")
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 4)
             update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
