@@ -47,7 +47,7 @@ def delen(phase, update):
     while phase.a % phase.b != 0:
         phase.a = random.randrange(1, 200)
         phase.b = random.randrange(1, 20)
-        phase.c = phase.a / phase.b
+        phase.c = phase.a // phase.b
     update.message.reply_text(str(phase.a) + ':' + str(phase.b) + '=')
     phase.check = 3
 
