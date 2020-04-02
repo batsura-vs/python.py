@@ -35,7 +35,7 @@ def startMaths(phase, update):
             phase.c = phase.a + phase.b
             update.message.reply_text('ну а теперь ' + phase.name + ' займёмся математикой \n'+ str(phase.a) + '+'+ str(phase.b)+
                                       '=')
-
+            phase.phase+=1
             phase.check = 1
         '''if phase.randMove == 2:
             phase.a = random.randrange(100, 200)
@@ -120,7 +120,7 @@ def getUserContext(update):
 
 
 users = {}
-masiv = [hi, born, surname, startMaths]
+masiv = [hi, born, surname, startMaths,plas]
 
 
 def sborka(update, context):
