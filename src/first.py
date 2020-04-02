@@ -53,7 +53,7 @@ def delen(phase, update):
 
 
 def umno(phase, update):
-    if phase.randMove != 1:
+    if phase.randMove != 4:
         return False
     phase.a = random.randrange(1, 20)
     phase.b = random.randrange(1, 20)
@@ -63,13 +63,13 @@ def umno(phase, update):
 
 
 def min(phase, update):
-    if phase.randMove != 1:
+    if phase.randMove != 2:
         return False
     phase.a = random.randrange(100, 200)
     phase.b = random.randrange(1, 100)
     phase.c = phase.a - phase.b
     update.message.reply_text(str(phase.a) + '-' + str(phase.b) + '=')
-    phase.check = 4
+    phase.check = 2
 
 
 def plas(phase, update):
