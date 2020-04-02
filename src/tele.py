@@ -87,6 +87,7 @@ def getUserContext(update):
     return userData
 
 
+
 msgs = {Phase.INPUT_FIRSTNAME: "Введите имя", Phase.INPUT_SURNAME: "Введите фамилию",
         Phase.INPUT_BORN: "Введите дату рождения в формате дд.мм.гггг"}
 users = {}

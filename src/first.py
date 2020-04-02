@@ -101,6 +101,9 @@ def plasCheck(phase, update):
     else:
         logger.info("plasCheck start")
         d = update.message.text
+        if d == 'сбросить счёт':
+            phase.h = 0
+            phase.g = 0
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
             phase.g +=1
