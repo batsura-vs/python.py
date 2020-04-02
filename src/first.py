@@ -100,13 +100,13 @@ def plasCheck(phase, update):
         logger.info("plasCheck start")
         d = update.message.text
         if phase.c == int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('молодец напиши й что бы продолжить')
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text(phase.name+' молодец напиши что бы продолжить')
             phase.check = 0
             return True
         if phase.c != int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('неверно  напиши й что бы продолжить\n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c))
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text('неверно '+phase.surName+'  напиши что бы продолжить\n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             return True
 
@@ -118,13 +118,13 @@ def minCheck(phase, update):
         d = update.message.text
         logger.info("minCheck start")
         if phase.c == int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text(phase.name+' молодец напиши что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             return True
         if phase.c != int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text('неверно '+phase.name+' напиши что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             return True
 
@@ -136,13 +136,13 @@ def delenChek(phase, update):
         d = update.message.text
         logger.info("delenCheck start")
         if phase.c == int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text('молодец '+phase.name+' напиши что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             return True
         if phase.c != int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text(phase.surName+',неверно,напиши что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             return True
 
@@ -154,13 +154,13 @@ def umnoChek(phase, update):
         d = update.message.text
         logger.info("umnoCheck start")
         if phase.c == int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text(phase.surName+' молодец напиши что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             return True
         if phase.c != int(d):
-            phase.randMove = random.randrange(1, 4)
-            update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            phase.randMove = random.randrange(1, 5)
+            update.message.reply_text('неверно '+phase.name+' напиши что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             return True
 
