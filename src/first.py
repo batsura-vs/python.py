@@ -82,7 +82,7 @@ def plas(phase, update):
     phase.b = random.randrange(1, 200)
     phase.c = phase.a + phase.b
     update.message.reply_text(str(phase.a) + '+' + str(phase.b) + '=')
-    c
+    phase.randMove=0
     phase.check = 1
 
 
@@ -92,15 +92,14 @@ def plasCheck(phase, update):
     else:
         d = update.message.text
         if phase.c == int(d):
-            phase.check = 0
-            update.message.reply_text('молодец напиши q что бы продолжить')
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('молодец напиши й что бы продолжить')
+            phase.check = 0
             return True
         if phase.c != int(d):
-            update.message.reply_text('неверно  напиши q что бы продолжить\n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c))
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('неверно  напиши й что бы продолжить\n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
             return True
 
 
@@ -110,15 +109,14 @@ def minCheck(phase, update):
     else:
         d = update.message.text
         if phase.c == int(d):
-            phase.check = 0
-            update.message.reply_text('молодец напиши q что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
             return True
         if phase.c != int(d):
-            update.message.reply_text('неверно напиши q что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
             return True
 
 
@@ -128,15 +126,14 @@ def delenChek(phase, update):
     else:
         d = update.message.text
         if phase.c == int(d):
-            phase.check = 0
-            update.message.reply_text('молодец напиши q что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
             return True
         if phase.c != int(d):
-            update.message.reply_text('неверно напиши q что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
             return False
 
 
@@ -146,15 +143,14 @@ def umnoChek(phase, update):
     else:
         d = update.message.text
         if phase.c == int(d):
-            phase.check = 0
-            update.message.reply_text('молодец напиши q что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('молодец напиши й что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
             return True
         if phase.c != int(d):
-            update.message.reply_text('неверно напиши q что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
-            phase.check = 0
             phase.randMove = random.randrange(1, 4)
+            update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
+            phase.check = 0
             return False
 
 
