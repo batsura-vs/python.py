@@ -145,10 +145,10 @@ def getUserContext(update):
     return userData
 
 users = {}
-masiv = [hi, born, surname, startMaths,plas]
+masiv = [hi, born, surname]
 
 def sborka(update, context):
-    phase=getUserContext(update)
+    phase=Phase()
     for handler in masiv:
         if handler(phase, update) is True:
             return
