@@ -37,43 +37,21 @@ def startMaths(phase, update):
                 'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
                 '=')
             phase.phase += 1
-            phase.check = 1
-        '''if phase.randMove == 2:
-            phase.a = random.randrange(100, 200)
-            phase.b = random.randrange(1, 100)
-            phase.c = phase.a - phase.b
-            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, '-', phase.b,
-                                      '=')
-            chekio.check = 2
-        if phase.randMove == 3:
-            while phase.a % phase.b != 0:
-                phase.a = random.randrange(100, 200)
-                phase.b = random.randrange(1, 100)
-                phase.c = phase.a / phase.b
-                update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, ':',
-                                          phase.b, '=')
-                chekio.check = 3
-        if phase.randMove == 4:
-            phase.a = random.randrange(1, 10)
-            phase.b = random.randrange(1, 15)
-            phase.c = phase.a * phase.b
-            update.message.reply_text('ну а теперь ' + help.name + ' займёмся математикой \n ', phase.a, '*', phase.b,
-                                      '=')
-            chekio.check = 4'''
 
 
 def plas(phase, update):
     if phase.phase != 4:
         return False
-    d = update.message.text
-    if phase.c == d:
-        update.message.reply_text('молодец')
-        phase.check = 0
-        return True
     else:
-        update.message.reply_text('неверно \n'+str(phase.a)+ '+'+str(phase.b)+ '='+ str(phase.c))
-        phase.check = 0
-        return True
+        d = update.message.text
+        if phase.c == d:
+            update.message.reply_text('молодец')
+            phase.check = 0
+            return True
+        else:
+            update.message.reply_text('неверно \n'+str(phase.a)+ '+'+str(phase.b)+ '='+ str(phase.c))
+            phase.check = 0
+            return True
 
 def hi(phase, update):
     logger.info('hi ' + str(phase.phase))
