@@ -37,6 +37,7 @@ def startMaths(phase, update):
         update.message.reply_text(
             'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
             '=')
+        phase.phase+=1
         phase.check = 1
 
 
