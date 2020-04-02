@@ -65,15 +65,15 @@ def startMaths(phase, update):
 def plas(phase, update):
     if phase.phase != 4:
         return False
-    if phase.chek == 1:
         d = update.message.text
         if phase.c == d:
             update.message.reply_text('молодец')
             phase.check = 0
+            return  True
         else:
             update.message.reply_text('неверно \n', phase.a, '+', phase.b, '=', phase.c)
             phase.check = 0
-
+            return True
 
 def hi(phase, update):
     logger.info('hi ' + str(phase.phase))
