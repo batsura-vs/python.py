@@ -18,20 +18,22 @@ class Phase:
     c = 0
     a = 0
     b = 0
-    name=None
-    surName=None
-    born=None
+    name = None
+    surName = None
+    born = None
 
 
 def startMaths(phase, update):
     if phase.phase == 3:
         logger.info("startMath start")
         phase.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
+        logger.info("startMath start2")
         if phase.randMove == 1:
+            logger.info("startMath start3")
             phase.a = random.randrange(1, 200)
             phase.b = random.randrange(1, 200)
             phase.c = phase.a + phase.b
-            update.message.reply_text('ну а теперь ' + phase.name + ' займёмся математикой \n ', phase.a, '+', phase.b,
+            update.message.reply_text('ну а теперь ' + phase.name + ' займёмся математикой \n '+ str(phase.a) + '+'+ str(phase.b)+
                                       '=')
             chekio.check = 1
         '''if phase.randMove == 2:
@@ -90,14 +92,13 @@ def hi(phase, update):
 
 
 def surname(phase, update):
-    logger.info('surname' + str(phase.phase))
-    if phase.phase == 1:
-        update.message.reply_text('а какая фамилия у тебя?')
-        phase.name = update.message.text
-        phase.phase += 1
-        return True
-    else:
+    if phase.phase != 1:
         return False
+    logger.info('surname' + str(phase.phase))
+    update.message.reply_text('а какая фамилия у тебя?')
+    phase.name = update.message.text
+    phase.phase += 1
+    return True
 
 
 def error(update, context):
