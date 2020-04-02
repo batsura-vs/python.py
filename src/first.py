@@ -50,6 +50,7 @@ def delen(phase, update):
     update.message.reply_text(str(phase.a) + ':' + str(phase.b) + '=')
     phase.randMove=0
     phase.check = 3
+    return True
 
 
 def umno(phase, update):
@@ -62,6 +63,7 @@ def umno(phase, update):
     update.message.reply_text(str(phase.a) + '*' + str(phase.b) + '=')
     phase.randMove=0
     phase.check = 4
+    return True
 
 
 def min(phase, update):
@@ -74,6 +76,7 @@ def min(phase, update):
     update.message.reply_text(str(phase.a) + '-' + str(phase.b) + '=')
     phase.randMove=0
     phase.check = 2
+    return True
 
 
 def plas(phase, update):
@@ -86,6 +89,7 @@ def plas(phase, update):
     update.message.reply_text(str(phase.a) + '+' + str(phase.b) + '=')
     phase.randMove=0
     phase.check = 1
+    return True
 
 
 def plasCheck(phase, update):
@@ -139,7 +143,7 @@ def delenChek(phase, update):
             phase.randMove = random.randrange(1, 4)
             update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
-            return False
+            return True
 
 
 def umnoChek(phase, update):
@@ -157,7 +161,7 @@ def umnoChek(phase, update):
             phase.randMove = random.randrange(1, 4)
             update.message.reply_text('неверно напиши й что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
-            return False
+            return True
 
 
 def hi(phase, update):
