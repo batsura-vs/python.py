@@ -143,7 +143,7 @@ def getUserContext(update):
 
 
 users = {}
-masiv = [hi, born, surname, startMaths, plas]
+masiv = [hi, born, surname, startMaths, plasCheck]
 
 
 def sborka(update, context):
