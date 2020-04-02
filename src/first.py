@@ -135,7 +135,6 @@ def born(phase, update):
     if phase.phase == 2:
         try:
             update.message.reply_text('твой год рождения в формате дд.мм.гггг')
-            help.surName = update.message.text
             phase.phase += 1
             return True
         except ValueError:
