@@ -50,8 +50,8 @@ class help:
 
 
 def startMaths(phase, update):
-    help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
     if phase.phase == 3:
+        help.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
         if randMove.d == 1:
             ansver.a = random.randrange(1, 200)
             ansver.b = random.randrange(1, 200)
