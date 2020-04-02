@@ -28,7 +28,7 @@ class Phase:
 def startMaths(phase, update):
     if phase.phase == 2:
         logger.info("startMath start")
-        phase.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
+        phase.surName=update.message.text
         logger.info("startMath start2")
         logger.info("startMath start3")
         phase.a = random.randrange(1, 200)
