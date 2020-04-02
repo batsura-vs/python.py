@@ -26,7 +26,7 @@ class Phase:
 
 
 def startMaths(phase, update):
-    if phase.phase == 3:
+    if phase.phase == 2:
         logger.info("startMath start")
         phase.Born = datetime.strptime(update.message.text, '%d.%m.%Y')
         logger.info("startMath start2")
