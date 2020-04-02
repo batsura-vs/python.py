@@ -23,8 +23,8 @@ class Phase:
     born = None
     check = None
     d = None
-    g = None
-    h = None
+    g = 0
+    h = 0
 
 
 def startMaths(phase, update):
