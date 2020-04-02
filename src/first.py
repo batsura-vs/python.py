@@ -22,6 +22,7 @@ class Phase:
     surName = None
     born = None
     check=None
+    d=None
 
 def startMaths(phase, update):
     if phase.phase == 3:
@@ -44,14 +45,12 @@ def plas(phase, update):
         return False
     else:
         d = update.message.text
-        if phase.c == d:
+        if phase.c == int(d):
             update.message.reply_text('молодец')
             phase.check = 0
             return True
-        else:
+        if phase.c != int(d):
             update.message.reply_text('неверно \n'+str(phase.a)+ '+'+str(phase.b)+ '='+ str(phase.c))
-            phase.check = 0
-            return True
 
 def hi(phase, update):
     logger.info('hi ' + str(phase.phase))
