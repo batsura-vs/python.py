@@ -87,8 +87,8 @@ def plasCheck(phase, update):
         return False
     else:
         d = update.message.text
-        phase.check = 0
         if phase.c == int(d):
+            phase.check = 0
             update.message.reply_text('молодец напиши q что бы продолжить')
             phase.check = 0
             phase.randMove = random.randrange(1, 4)
@@ -105,8 +105,8 @@ def minCheck(phase, update):
         return False
     else:
         d = update.message.text
-        phase.check = 0
         if phase.c == int(d):
+            phase.check = 0
             update.message.reply_text('молодец напиши q что бы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             phase.randMove = random.randrange(1, 4)
@@ -123,8 +123,8 @@ def delenChek(phase, update):
         return False
     else:
         d = update.message.text
-        phase.check = 0
         if phase.c == int(d):
+            phase.check = 0
             update.message.reply_text('молодец напиши q что бы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             phase.randMove = random.randrange(1, 4)
@@ -141,8 +141,8 @@ def umnoChek(phase, update):
         return False
     else:
         d = update.message.text
-        phase.check = 0
         if phase.c == int(d):
+            phase.check = 0
             update.message.reply_text('молодец напиши q что бы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c))
             phase.check = 0
             phase.randMove = random.randrange(1, 4)
