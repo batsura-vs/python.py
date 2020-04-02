@@ -65,7 +65,7 @@ def startMaths(phase, update):
 def plas(phase, update):
     if phase.phase != 4:
         return False
-    if phase. == 1:
+    if phase.chek == 1:
         d = update.message.text
         if phase.c == d:
             update.message.reply_text('молодец')
