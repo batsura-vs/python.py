@@ -133,7 +133,7 @@ masiv = [hi, born, surname]
 
 
 def sborka(update, context):
-    phase = getUserContext()
+    phase = getUserContext(update)
     for handler in masiv:
         if handler(phase, update) is True:
             return
