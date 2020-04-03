@@ -30,14 +30,14 @@ class Phase:
 def startMaths(phase, update):
     if phase.phase == 2:
         phase.phase += 1
-        Phase.surName=update.message.text
+        Phase.surName = update.message.text
         logger.info("startMath start")
         phase.a = random.randrange(1, 200)
         phase.b = random.randrange(1, 200)
         phase.c = phase.a + phase.b
         update.message.reply_text(
-               'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
-           '=')
+            'ну а теперь ' + phase.name + ' займёмся математикой \n' + str(phase.a) + '+' + str(phase.b) +
+            '=')
         phase.check = 1
         return True
 
@@ -51,7 +51,7 @@ def delen(phase, update):
         phase.b = random.randrange(1, 20)
         phase.c = phase.a // phase.b
     update.message.reply_text(str(phase.a) + ':' + str(phase.b) + '=')
-    phase.randMove=0
+    phase.randMove = 0
     phase.check = 3
     return True
 
@@ -64,7 +64,7 @@ def umno(phase, update):
     phase.b = random.randrange(1, 20)
     phase.c = phase.a * phase.b
     update.message.reply_text(str(phase.a) + '*' + str(phase.b) + '=')
-    phase.randMove=0
+    phase.randMove = 0
     phase.check = 4
     return True
 
@@ -77,7 +77,7 @@ def min(phase, update):
     phase.b = random.randrange(1, 100)
     phase.c = phase.a - phase.b
     update.message.reply_text(str(phase.a) + '-' + str(phase.b) + '=')
-    phase.randMove=0
+    phase.randMove = 0
     phase.check = 2
     return True
 
@@ -90,7 +90,7 @@ def plas(phase, update):
     phase.b = random.randrange(1, 200)
     phase.c = phase.a + phase.b
     update.message.reply_text(str(phase.a) + '+' + str(phase.b) + '=')
-    phase.randMove=0
+    phase.randMove = 0
     phase.check = 1
     return True
 
@@ -108,14 +108,18 @@ def plasCheck(phase, update):
             return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            phase.g +=1
-            update.message.reply_text(phase.name+' молодец напиши класс 1 продолжить \n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            phase.g += 1
+            update.message.reply_text(
+                phase.name + ' молодец напиши класс 1 продолжить \n' + str(phase.a) + '+' + str(phase.b) + '=' + str(
+                    phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
             phase.h += 1
-            update.message.reply_text('неверно '+phase.surName+'  напиши 1 чтобы продолжить\n' + str(phase.a) + '+' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            update.message.reply_text(
+                'неверно ' + phase.surName + '  напиши 1 чтобы продолжить\n' + str(phase.a) + '+' + str(
+                    phase.b) + '=' + str(phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
 
@@ -133,14 +137,18 @@ def minCheck(phase, update):
             return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            phase.g +=1
-            update.message.reply_text(phase.name+' молодец напиши 1 чтобы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            phase.g += 1
+            update.message.reply_text(
+                phase.name + ' молодец напиши 1 чтобы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(
+                    phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
             phase.h += 1
-            update.message.reply_text('неверно '+phase.name+' напиши 1 чтобы продолжить\n' + str(phase.a) + '-' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            update.message.reply_text(
+                'неверно ' + phase.name + ' напиши 1 чтобы продолжить\n' + str(phase.a) + '-' + str(
+                    phase.b) + '=' + str(phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
 
@@ -158,14 +166,18 @@ def delenChek(phase, update):
             return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            phase.g +=1
-            update.message.reply_text('молодец '+phase.name+' напиши 1 чтобы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            phase.g += 1
+            update.message.reply_text(
+                'молодец ' + phase.name + ' напиши 1 чтобы продолжить\n' + str(phase.a) + ':' + str(
+                    phase.b) + '=' + str(phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
             phase.h += 1
-            update.message.reply_text(phase.surName+',неверно,напиши 1 чтобы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            update.message.reply_text(
+                phase.surName + ',неверно,напиши 1 чтобы продолжить\n' + str(phase.a) + ':' + str(phase.b) + '=' + str(
+                    phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
 
@@ -183,14 +195,18 @@ def umnoChek(phase, update):
             return True
         if phase.c == int(d):
             phase.randMove = random.randrange(1, 5)
-            phase.g +=1
-            update.message.reply_text(phase.surName+' молодец напиши 1 чтобы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            phase.g += 1
+            update.message.reply_text(
+                phase.surName + ' молодец напиши 1 чтобы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(
+                    phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
         if phase.c != int(d):
             phase.randMove = random.randrange(1, 5)
             phase.h += 1
-            update.message.reply_text('неверно '+phase.name+' напиши 1 чтобы продолжить\n' + str(phase.a) + '*' + str(phase.b) + '=' + str(phase.c)+'\n решено верно:'+str(phase.g)+'\n ошибок:'+ str(phase.h))
+            update.message.reply_text(
+                'неверно ' + phase.name + ' напиши 1 чтобы продолжить\n' + str(phase.a) + '*' + str(
+                    phase.b) + '=' + str(phase.c) + '\n решено верно:' + str(phase.g) + '\n ошибок:' + str(phase.h))
             phase.check = 0
             return True
 
@@ -220,8 +236,6 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
-
-
 def getUserContext(update):
     key = update.message.chat.username
     userData = users.get(key)
@@ -232,7 +246,7 @@ def getUserContext(update):
 
 
 users = {}
-masiv = [hi, surname, startMaths, plasCheck, plas,min,minCheck,umno,umnoChek,delen,delenChek]
+masiv = [hi, surname, startMaths, plasCheck, plas, min, minCheck, umno, umnoChek, delen, delenChek]
 
 
 def sborka(update, context):
