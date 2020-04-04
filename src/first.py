@@ -83,16 +83,16 @@ def min(phase, update):
 
 
 def plas(phase, update):
-    if phase.randMove != 1:
-        return False
-    logger.info("plas start")
-    phase.a = random.randrange(1, 200)
-    phase.b = random.randrange(1, 200)
-    phase.c = phase.a + phase.b
-    update.message.reply_text(str(phase.a) + '+' + str(phase.b) + '=')
-    phase.randMove = 0
-    phase.check = 1
-    return True
+        if phase.randMove != 1:
+            return False
+        logger.info("plas start")
+        phase.a = random.randrange(1, 200)
+        phase.b = random.randrange(1, 200)
+        phase.c = phase.a + phase.b
+        update.message.reply_text(str(phase.a) + '+' + str(phase.b) + '=')
+        phase.randMove = 0
+        phase.check = 1
+        return True
 
 
 def plasCheck(phase, update):
@@ -186,6 +186,7 @@ def umnoChek(phase, update):
     if phase.check != 4:
         return False
     else:
+
         d = update.message.text
         logger.info("umnoCheck start")
         if d == 'сбросить счёт':
