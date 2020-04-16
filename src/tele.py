@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from enum import Enum, auto
-from datetime import datetime
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -9,101 +7,81 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
+@dataclass
+class Phase():
+    phase2=1
+    d=0
+    s=None
+    a=None
 
-#
-class Phase(Enum):
-    INPUT_FIRSTNAME = auto()
-    INPUT_SURNAME = auto()
-    INPUT_BORN = auto()
-    DONE = auto()
+handlers = []
 
+def number(update,phase2):
+    if phase2==1:
+        update.message.reply_text('введите сколько букв вы хотите поменять')
+        phase2+=1
+        return True
 
-@dataclass()
-class PassportData:
-    firstName: str
-    surName: str
-    born: datetime
-    userId: str = "unknown"
-    phase: Phase = Phase.INPUT_FIRSTNAME
-
-
-def start(update, context):
-    """Send a message when the command /start is issued."""
-    update.message.reply_text('привет,как тебя зовут?')
-
-
-def __init__(self):
-    self.userId = self.userId
+def numberCheck(update,phase2):
+    if phase2==2:
+        Phase.d=update.message.text
+        phase2+=1
+        return True
 
 
-def sendMsgs(incPhase, data, update):
-    if ( incPhase is True):
-        update.message.reply_text(msgs.get(data.phase))
+def slovo(update,phase2):
+    if phase2==3:
+        update.message.reply_text('введи 1 слово')
+        phase2+=1
+        return True
 
+def slovoCheck(update,phase2):
+    if phase2==4:
+        Phase.s=update.message.text
+        phase2+=1
+        return True
 
-def inputFirstName(data, update):
-    if data.phase is not Phase.INPUT_FIRSTNAME:
-        return False
-    data.firstName = update.message.text
-    data.phase = Phase(data.phase.value + 1)
-    sendMsgs(data, update)
-    return True
+def slovo2(phase2,update):
+    if phase2 == 5:
+        update.message.reply_text('введи 2 слово')
+        phase2+=1
+        return True
 
+def slovo2Check(update,phase2):
+    if phase2== 6:
+        Phase.a=update.message.text
+        phase2+=1
+        return True
 
-def inputSurName(data, update):
-    if data.phase is not Phase.INPUT_SURNAME:
-        return False
-    data.surName = update.message.text
-    data.phase = Phase(data.phase.value + 1)
-    sendMsgs(data,update)
-    return True
+def sborka(update,phase2):
+    if phase2==7:
+        asf = Phase.s[Phase.d]
+        sf = Phase.s[Phase.d:]
+        b = len(Phase.s)
+        n = len(sf)
+        x = b - n
+        z = Phase.s[:x]
 
+        zx = Phase.a[Phase.d]
+        xz = Phase.a[Phase.d:]
+        vb = len(Phase.a)
+        zn = len(sf)
+        vx = b - n
+        mn = Phase.a[:vx]
+        update.message.reply_text(z + xz, mn + sf,'    напиши что-нибудь')
+        phase2=1
+        return True
 
-def printData(data, update):
-    if data.phase is not Phase.DONE:
-        return False
-    update.message.reply_text('Ты ', data.firstName)
-    return True
-
-
-def inputBorn(data, update):
-    if data.phase is not Phase.INPUT_BORN:
-        return False
-    try:
-        data.born = datetime.strptime(update.message.text, '%d.%m.%Y')
-        data.phase = Phase(data.phase.value + 1)
-    except ValueError:
-        sendMsgs(data,update)
-        return False
-    return True
-
-
-def getUserContext(update):
-    key = update.message.chat.username
-    userData = users.get(key)
-    if userData is None:
-        userData = PassportData()
-        users[key] = userData
-    return userData
-
-
-
-msgs = {Phase.INPUT_FIRSTNAME: "Введите имя", Phase.INPUT_SURNAME: "Введите фамилию",
-        Phase.INPUT_BORN: "Введите дату рождения в формате дд.мм.гггг"}
-users = {}
-
-handlers = [inputFirstName, inputSurName, inputBorn, printData]
-
+handler = [sborka,number,slovo,slovoCheck,slovo2,slovo2Check]
 
 def handleEvent(update, context):
     """Echo the user message."""
-    data = getUserContext(update)
 
     logger.info(update.message.chat.username)
-    logger.info(data)
+    logger.info(Phase.phase2)
 
     for handler in handlers:
-        if handler(data, update) is True:
+        if handler(Phase.phase2, update) is True:
             return
 
 
@@ -123,7 +101,7 @@ def error(update, context):
 
 
 def main():
-    updater = Updater("1106434818:AAH1RTWxMFDTyj9EQ3LaIUN64s-7jkeQFPU", use_context=True)
+    updater = Updater("995509965:AAFapX8o5vYD7erMtAmS5ExxI-G0hKcApJE", use_context=True)
     dp = updater.dispatcher
     echo_handler = MessageHandler(Filters.text, handleEvent)
     dp.add_handler(echo_handler)
