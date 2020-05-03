@@ -230,6 +230,7 @@ def surname(phase, update):
     phase.name = update.message.text
     phase.phase += 1
     return True
+users = {}
 
 
 def error(update, context):
@@ -246,7 +247,6 @@ def getUserContext(update):
     return userData
 
 
-users = {}
 masiv = [hi, surname, startMaths, plasCheck, plas, min, minCheck, umno, umnoChek, delen, delenChek]
 
 
