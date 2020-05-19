@@ -6,6 +6,8 @@
         <list>
           <option value="supasel.sa" />
           <option value="str.*" />
+          <option value="telegram.ext.dispatcher.add_handler" />
+          <option value="telebot.TeleBot.reply_to" />
         </list>
       </option>
     </inspection_tool>
