@@ -25,7 +25,7 @@ class Data:
 
 data = Data()
 
-bot = telegram.Bot('Токен')
+bot = telegram.Bot('1037824337:AAGxeQ7N8iPNeGx1BZBZHhMEm_8jKrfbkRQ')
 
 
 def delete_mes():
@@ -69,7 +69,7 @@ def button_is_pressed(update, context):
         bot.restrict_chat_member(data.chat_id, data.user_id,
                                  permissions=telegram.ChatPermissions(can_send_messages=True,
                                                                       can_send_other_messages=True))
-        rules = [[InlineKeyboardButton(text='Правила чата.', url='Твоя ссылка на правила')]]
+        rules = [[InlineKeyboardButton(text='Правила чата.', url='https://t.me/BrawlStarsStore492/1629')]]
         rules = InlineKeyboardMarkup(rules)
         query.edit_message_text('Проверка пройдена', reply_markup=rules)
         t = Timer(15, delete_mes)
@@ -87,7 +87,7 @@ def error(update, context):
 
 
 def main():
-    updater = Updater("Токен", use_context=True)
+    updater = Updater("1037824337:AAGxeQ7N8iPNeGx1BZBZHhMEm_8jKrfbkRQ", use_context=True)
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, new_member))
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, delete_left_mes))
     updater.dispatcher.add_handler(CallbackQueryHandler(button_is_pressed))
